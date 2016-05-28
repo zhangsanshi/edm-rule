@@ -15,7 +15,7 @@ module.exports = {
             }
             var attr = $child.attr(key);
             if (attr && !(/^http/.test(attr))) {
-                collectError['img_src'] = '请注意img的地址是相当地址';
+                collectError['img_src'] = '请注意img的地址是相对地址,请改成绝对地址';
             }
         },
         border: function (key, $child, root, collectError, rule, style) {
