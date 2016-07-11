@@ -55,7 +55,7 @@ var baseStyle = {
     }
   },
   backgroud: function (key, $child, root, collectError, rule, style) {
-    var backgroud = style[key],
+    var backgroud = style[key] || '',
       color = backgroud.match(COLOR_REG),
       check = '';
     if (backgroud.indexOf('url') != -1) {
