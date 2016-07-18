@@ -54,9 +54,9 @@ var baseStyle = {
       collectError[$child.get(0).name + '_position'] = "存在使用position的情况";
     }
   },
-  background: function (key, $child, root, collectError, rule, style) {
-    var background = style[key],
-      color = background.match(COLOR_REG),
+  backgroud: function (key, $child, root, collectError, rule, style) {
+    var backgroud = style[key] || '',
+      color = backgroud.match(COLOR_REG),
       check = '';
     if (background.indexOf('url') != -1) {
       collectError[$child.get(0).name + '_background'] = "最好不使用背景图";
