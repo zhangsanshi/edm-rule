@@ -49,22 +49,22 @@ var baseStyle = {
 
   },
   position: function (key, $child, root, collectError, rule, style) {
-    var float = style[key];
-    if (float) {
+    var position = style[key];
+    if (position) {
       collectError[$child.get(0).name + '_position'] = "存在使用position的情况";
     }
   },
-  backgroud: function (key, $child, root, collectError, rule, style) {
-    var backgroud = style[key],
-      color = backgroud.match(COLOR_REG),
+  background: function (key, $child, root, collectError, rule, style) {
+    var background = style[key],
+      color = background.match(COLOR_REG),
       check = '';
-    if (backgroud.indexOf('url') != -1) {
-      collectError[$child.get(0).name + '_backgroud'] = "最好不使用背景图";
+    if (background.indexOf('url') != -1) {
+      collectError[$child.get(0).name + '_background'] = "最好不使用背景图";
     }
     if (color && color.length) {
       if (color[2].length === 3) {
-        collectError['backgroud-color'] = "存在backgroud-color的简写情况";
-        check = backgroud.replace(COLOR_REG, function (a, b, c, d) {
+        collectError['background-color'] = "存在background-color的简写情况";
+        check = background.replace(COLOR_REG, function (a, b, c, d) {
           return b + color6(c) + d;
         });
         style[key] = check;
@@ -72,21 +72,21 @@ var baseStyle = {
     }
 
   },
-  'backgroud-color': function (key, $child, root, collectError, rule, style) {
+  'background-color': function (key, $child, root, collectError, rule, style) {
     var color = style[key];
     if (color) {
       var check = checkColor(color);
       if (check != color) {
         style[key] = check;
-        collectError['backgroud-color'] = "存在 backgroud-color 的简写情况";
+        collectError['background-color'] = "存在 background-color 的简写情况";
       }
     }
   },
-  'backgroud-image': function (key, $child, root, collectError, rule, style) {
-    collectError[$child.get(0).name + '_backgroud'] = "最好不要使用背景图";
+  'background-image': function (key, $child, root, collectError, rule, style) {
+    collectError[$child.get(0).name + '_background'] = "最好不要使用背景图";
   },
-  'backgroud-position': function (key, $child, root, collectError, rule, style) {
-    collectError[$child.get(0).name + '_backgroud'] = "不要使用 sprite 图";
+  'background-position': function (key, $child, root, collectError, rule, style) {
+    collectError[$child.get(0).name + '_background'] = "不要使用 sprite 图";
   }
 };
 module.exports = {

@@ -3,7 +3,7 @@ module.exports = {
         display: function (key, $child, root, collectError, rule, style) {
             var attr = style[key];
             if (attr == 'inline-block' || !attr) {
-                collectError['img'] = '请注意img处于inline-block的时候,会造成父元素大于图片的宽度';
+                collectError['img'] = '请注意img处于inline-block的时候,会造成父元素大于图片的高度';
             }
         }
     },
@@ -11,7 +11,7 @@ module.exports = {
         src: function (key, $child, root, collectError, rule, style) {
             var attr = style['inline-block'];
             if (attr == 'inline-block' || !attr) {
-                collectError['img'] = '请注意img处于inline-block的时候,会造成父元素大于图片的宽度';
+                collectError['img'] = '请注意img处于inline-block的时候,会造成父元素大于图片的高度';
             }
             var attr = $child.attr(key);
             if (attr && !(/^http/.test(attr))) {
