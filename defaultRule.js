@@ -83,10 +83,16 @@ var baseStyle = {
     }
   },
   'background-image': function (key, $child, root, collectError, rule, style) {
-    collectError[$child.get(0).name + '_background'] = "最好不要使用背景图";
+    var background = style[key] || '';
+    if (background) {
+      collectError[$child.get(0).name + '_background'] = "最好不要使用背景图";
+    }
   },
   'background-position': function (key, $child, root, collectError, rule, style) {
-    collectError[$child.get(0).name + '_background'] = "不要使用 sprite 图";
+    var background = style[key] || '';
+    if (background) {
+      collectError[$child.get(0).name + '_background'] = "不要使用 sprite 图";
+    }
   }
 };
 module.exports = {
