@@ -1,6 +1,6 @@
 {
   "name": "edm-rule",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "edm规则,用于html-check解析",
   "main": "rule.js",
   "scripts": {
