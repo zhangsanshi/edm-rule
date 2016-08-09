@@ -22,6 +22,7 @@ module.exports = {
             var attr = $child.attr(key);
             if (!attr) {
                 $child.attr(key, 0);
+                collectError['img_border'] = '请注意添加img的border(默认0)';
             }
         },
         width: function (key, $child, root, collectError, rule, style) {
