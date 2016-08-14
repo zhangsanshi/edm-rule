@@ -11,3 +11,4 @@
 通过配置 `html-check` 的 `options` 可以使用多项功能
 
 1. `options.imgRoot` 可以自动读取 `img`, 设置宽高属性(仅支持本地路径)
+2. `options.CDN` 可以自动将 `img` 的 `src` 属性,改成线上的地址

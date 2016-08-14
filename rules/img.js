@@ -37,9 +37,16 @@ module.exports = {
                 collectError['img'] = '请注意img处于inline-block的时候,会造成父元素大于图片的高度';
             }
             var attr = $child.attr(key);
-            if (attr && !(/^http/.test(attr))) {
-                collectError['img_src'] = '请注意img的地址是相对地址,请改成绝对地址';
+            if (attr) {
+                if (!Util.isUrl(attr)) {
+                    collectError['img_src'] = '请注意img的地址是相对地址,请改成绝对地址';
+                    if (ops.CDN) {
+                        $child.attr('src', url.resolve(ops.CDN, attr));
+                        collectError['img_src_auto'] = '已自动修改路径为CDN路径';
+                    }
+                }
             }
+
         },
         border: function (key, $child, root, collectError, rule, style) {
             var attr = $child.attr(key);
