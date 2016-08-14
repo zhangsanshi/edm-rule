@@ -31,9 +31,9 @@ module.exports = {
         }
     },
     attrRule: {
-        src: function (key, $child, root, collectError, rule, style) {
-            var attr = style['inline-block'];
-            if (attr == 'inline-block' || !attr) {
+        src: function (key, $child, root, collectError, rule, style, ops) {
+            var display = style['display'];
+            if (display == 'inline-block' || !display) {
                 collectError['img'] = '请注意img处于inline-block的时候,会造成父元素大于图片的高度';
             }
             var attr = $child.attr(key);
