@@ -1,14 +1,26 @@
 var Util = require('../util/util.js');
 var imageSize = require('../util/image-size.js');
+var md5 = require('../util/md5.js');
 var path = require('path');
 var url = require('url');
 
+
 function getImageSize($child, ops, collectError) {
-    var src = $child.attr('src');
+    var src = $child.attr('src'),
+        srcWithoutSearch = '',
+        md5code = '';
     if (!Util.isUrl(src) && ops.imgRoot && !Util.isUrl(ops.imgRoot)) {
         var dimensions = null;
+        srcWithoutSearch = src.replace(/\?.*/, '');
         try {
-            dimensions = imageSize.parse(path.join(ops.imgRoot, src));
+            var absPath = path.join(ops.imgRoot, srcWithoutSearch);
+            dimensions = imageSize.parse(absPath);
+            md5code = md5(absPath);
+            if (md5code) {
+                //缩短md5长度
+                md5code = md5code.substring(0, 8);
+                $child.attr('src', src + (src === srcWithoutSearch ? '?' : '&') + md5code);
+            }
         } catch (e) {
 
         }
@@ -61,7 +73,7 @@ module.exports = {
             if (attr) {
                 if (!Util.isUrl(attr)) {
                     collectError['img_src'] = '请注意img的地址是相对地址,请改成绝对地址';
-                    if (ops.CDN) {
+                    if (ops.CDN && !ops.debug) {
                         $child.attr('src', url.resolve(ops.CDN, attr));
                         collectError['img_src_auto'] = '已自动修改路径为CDN路径';
 
